@@ -16,10 +16,10 @@ In `_config.yml` remember to specify your own data:
     title : My Blog =)
     
     author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
+      name : Edy D. Kim
+      email : support@app-creative.com
+      github : edydkim
+      twitter : edydkim
 
 The theme should reference these variables whenever needed.
     
@@ -40,7 +40,6 @@ Here's a sample "posts list".
 
 ## To-Do
 
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
+This site is still unfinished and updating.
 
 
