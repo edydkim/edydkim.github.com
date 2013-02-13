@@ -11,26 +11,11 @@ Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllb
 
 ## Update Author Attributes
 
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Edy D. Kim
-      email : support@app-creative.com
-      github : edydkim
-      twitter : edydkim
+See about below.
 
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
+## Posts
 
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
-
-    $ rm -rf _posts/core-samples
-
-Here's a sample "posts list".
+Here's a "posts list".
 
 <ul class="posts">
   {% for post in site.posts %}
