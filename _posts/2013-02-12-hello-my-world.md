@@ -2,7 +2,7 @@
 layout: post
 title: "Hello My World"
 description: "This is first"
-category: blog
+category: "blog"
 tags: [me, profile]
 ---
 {% include JB/setup %}
