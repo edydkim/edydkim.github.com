@@ -2,10 +2,9 @@
 layout: post
 title: "Hello My World"
 description: "This is first"
-category: pages
+category: blog
 tags: [me, profile]
 ---
-{% include JB/setup %}
 
 I just let you know the progamming about computer science and enjoy it..
 Now I am concerning **Scala & Akka** on Play2 other than..
