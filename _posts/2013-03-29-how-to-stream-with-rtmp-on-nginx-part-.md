@@ -5,10 +5,10 @@ description: ""
 category: 
 tags: []
 ---
-Preface
+**Prefacei**
 Recently, Streaming Service is contemporary and open but high-level performance so that is rugged to low API designing and costly. On ad-hoc network - only streaming in some like Pigg Channel, the most important things is short-term development to implement it with low cost and high API. 
 
-Contents
+**Contents**
     Preface
     Contents
     Abstract
@@ -23,7 +23,7 @@ Contents
     Conclusion
     References
 
-Abstract
+**Abstract**
 NginX is a well-known web server asynchronous each request, RTMP is protocol developed by Adobe (Macromedia) for streaming on flash player the specification has been published in 2009. It is a goal to implement RTMP service running on NginX as media server. There are two parts record a stream and publish it on live. In this part, I want to clear how to record a live stream to a file using RTMP, next to how to publishing about those. See what I try out below.
 
 0. Prerequisite
@@ -36,17 +36,13 @@ NginX is a well-known web server asynchronous each request, RTMP is protocol dev
 
 4. Access the site and record on live
 
-Design
+**Design**
 0. Prerequisite
 
 NginX 1.3.4
-
 nginx-rtmp-module 3.0.1 (use RTMP port 1935)
-
 gcc 4.1.2
-
 Make 3.81
-
 you can download library whenever get errors or warnings.
 
 Here are environments,
@@ -59,9 +55,7 @@ Linux 2.6.18-164.el5 #1 SMP Thu Sep 3 03:28:30 EDT 2009 x86_64 x86_64 x86_64 GNU
 There are a lot of open source group for that, in this case I tried out nginx-rtmp-module※1 have participated as watcher in github. 
 
 repository : git clone https://github.com/arut/nginx-rtmp-module.git nginx-rtmp-module
-
 or
-
 download as zip : curl -L -O -k https://github.com/arut/nginx-rtmp-module/tarball/master
 
 Prior to make and build let me skim those sources in nginx-rtmp-module.
@@ -94,7 +88,20 @@ vim where is .conf file in NginX - nginx/conf/nginx.conf
 
 (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link - http://amewiki.cadc.cyberagent.local/pages/viewpage.action?pageId=8744955)
 
-rtmp {      server {          listen 1935;          publish_time_fix off;          application my_app {           live on; # stream on live allow         publish all;  # control access privilege      allow play all; # control access privilege       record all;   # record stream to a file      record_max_size 100M;   # set a file size             record_path /tmp;      # where the file is save         }     } }
+rtmp {
+      server {
+          listen 1935;
+          publish_time_fix off;
+          application my_app {
+          	live on;                # stream on live allow
+ 	        publish all;            # control access privilege
+		allow play all;         # control access privilege
+	        record all;             # record stream to a file
+		record_max_size 100M;   # set a file size 
+	        record_path /tmp;       # where the file is save 
+          }
+     }
+}
 
 stop and start the web server, you may stop master and worker processes both of them.
 
@@ -107,7 +114,12 @@ each .js and .swf are included test/www directory in nginx-rtmp-module archived.
 
 record.html
 
-<html> <head><html> <head> <script src="jwplayer_old/swfobject.js"></script> <script type="text/javascript"> var flashvars = {     'streamer': 'rtmp://YOUR_SERVER_IP/myapp',     'file': 'YOUR_FILE_NAME',     'type': 'camera',     'controlbar': 'bottom',     'stretching': 'none',     'frontcolor': '86C29D', // text & icons (green)     'backcolor': '849BC1', // playlist background (blue)     'lightcolor': 'C286BA', // selected text/track highlight (pink)     'screencolor': 'FFFFFF', // screen background (black)     'id': 'playerID',     'autostart': 'true' };  var params = {     'allowfullscreen': 'true',     'allowscriptaccess': 'always',     'bgcolor': '#FFFFFF' };  var attributes = {     'id': 'playerID',     'name': 'playerID' }; swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes); </script> </head> <body> <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer"><a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div> </body> </html> <script src="jwplayer_old/swfobject.js"></script> <script type="text/javascript">
+<html>
+  <head>
+    <script src="jwplayer_old/swfobject.js"></script>
+    <script type="text/javascript"> var flashvars = {     'streamer': 'rtmp://YOUR_SERVER_IP/myapp',     'file': 'YOUR_FILE_NAME',     'type': 'camera',     'controlbar': 'bottom',     'stretching': 'none',     'frontcolor': '86C29D', // text & icons (green)     'backcolor': '849BC1', // playlist background (blue)     'lightcolor': 'C286BA', // selected text/track highlight (pink)     'screencolor': 'FFFFFF', // screen background (black)     'id': 'playerID',     'autostart': 'true' };  var params = {     'allowfullscreen': 'true',     'allowscriptaccess': 'always',     'bgcolor': '#FFFFFF' };  var attributes = {     'id': 'playerID',     'name': 'playerID' }; swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes); </script> </head> <body> <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer"><a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div> 
+  </body>
+</html>
 
 load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
