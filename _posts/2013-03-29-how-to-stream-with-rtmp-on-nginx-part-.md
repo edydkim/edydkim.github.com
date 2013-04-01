@@ -136,15 +136,15 @@ tags: [NginX, RTMP]
 
  record.html
 
-<plaintext>
+ <plaintext>
 
-<html>
+ <html>
 
-  <head>
+   <head>
 
-    <script src="jwplayer_old/swfobject.js"></script>
+     <script src="jwplayer_old/swfobject.js"></script>
 
-    <script type="text/javascript"> var flashvars = {
+     <script type="text/javascript"> var flashvars = {
 
          'streamer': 'rtmp://YOUR_SERVER_IP/myapp',
 
@@ -168,32 +168,33 @@ tags: [NginX, RTMP]
 
          'id': 'playerID','autostart': 'true'};
 
-         var params = {     'allowfullscreen': 'true',     'allowscriptaccess': 'always',     'bgcolor': '#FFFFFF' };
+         var params = {'allowfullscreen': 'true', 'allowscriptaccess': 'always', 'bgcolor': '#FFFFFF' };
 
-         var attributes = {     'id': 'playerID',     'name': 'playerID' };
+         var attributes = {'id': 'playerID', 'name': 'playerID' };
 
          swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
 
-     </script>
+      </script>
 
-  </head> 
+   </head> 
 
-    <body>
+     <body>
 
-      <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer"><br />
+       <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer"><br />
 
-      <a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div>
+       <a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div>
 
-  </body>
+   </body>
 
-</html>
+ </html>
 
-</plaintext>
+ </plaintext>
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
  <img src="/assets/images/screenshot_2013-08-29.png">
 
+ 
  $ ll /tmp/*flv rw-rr- 1
  
  nobody nobody 992722 8月 29 11:54 /tmp/mystream.flv
