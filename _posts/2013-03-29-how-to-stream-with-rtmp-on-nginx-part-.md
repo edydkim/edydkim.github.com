@@ -137,36 +137,58 @@ tags: [NginX, RTMP]
  record.html
 
  &lt;html&gt;
+ 
    &lt;head&gt;
+   
      &lt;script src="jwplayer_old/swfobject.js"&gt;&lt;/script&gt;
+     
      &lt;script type="text/javascript"&gt; var flashvars = {
+     
          'streamer': 'rtmp://YOUR_SERVER_IP/myapp',
+         
          'file': 'YOUR_FILE_NAME',
+         
          'type': 'camera',
+         
          'controlbar': 'bottom',
+         
          'stretching': 'none',
+         
          'frontcolor': '86C29D',
+         
          // text & icons (green)
+         
          'backcolor': '849BC1', // playlist background (blue)
+         
          'lightcolor': 'C286BA', // selected text/track highlight (pink)
+         
          'screencolor': 'FFFFFF', // screen background (black)
+         
          'id': 'playerID','autostart': 'true'};
+         
          var params = {'allowfullscreen': 'true', 'allowscriptaccess': 'always', 'bgcolor': '#FFFFFF' };
+         
          var attributes = {'id': 'playerID', 'name': 'playerID' };
+         
          swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
       &lt;/script&gt;
+      
    &lt;/head&gt; 
+   
      &lt;body&gt;
+     
        &lt;a href="index.html"&gt;Play&lt;/a&gt; | &lt;b&gt;Record&lt;/b&gt;
+       
        &lt;div id="playercontainer" class="playercontainer"&gt;
+       
        &lt;a id="player" class="player" href="http://get.adobe.com/flashplayer/"&gt; Get the Adobe Flash Player to see this video.&lt;/a&gt;&lt;/div&gt;
+
    &lt;/body&gt;
+
  &lt;/html&gt;
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
- 
  <img src="/assets/images/screenshot_2013-08-29.png">
-
  
  $ ll /tmp/*flv 
  
