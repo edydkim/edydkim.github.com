@@ -96,20 +96,20 @@ tags: [NginX, RTMP]
  (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link)
 
 ```
-rtmp {
-      server {
-          listen 1935;
-          publish_time_fix off;
-          application my_app {
-          	live on;                # stream on live allow
- 	        publish all;            # control access privilege
-		    allow play all;         # control access privilege
-	        record all;             # record stream to a file
-		    record_max_size 100M;   # set a file size 
-	        record_path /tmp;       # where the file is save 
-          }
-     }
-}
+rtmp {<br />
+      server {<br />
+          listen 1935;<br />
+          publish_time_fix off;<br />
+          application my_app {<br />
+          	live on;                # stream on live allow<br />
+ 	        publish all;            # control access privilege<br />
+		    allow play all;         # control access privilege<br />
+	        record all;             # record stream to a file<br />
+		    record_max_size 100M;   # set a file size<br />
+	        record_path /tmp;       # where the file is save<br /> 
+          }<br />
+     }<br />
+}<br />
 ```
 
  stop and start the web server, you may stop master and worker processes both of them.
@@ -126,36 +126,37 @@ rtmp {
 
 ```
 <plaintext>
-<html>
-  <head>
-    <script src="jwplayer_old/swfobject.js"></script>
-    <script type="text/javascript"> var flashvars = {
-         'streamer': 'rtmp://YOUR_SERVER_IP/myapp', 
-         'file': 'YOUR_FILE_NAME',
-         'type': 'camera',    
-         'controlbar': 'bottom',     
-         'stretching': 'none',     
-         'frontcolor': '86C29D', 
-         // text & icons (green)     
-         'backcolor': '849BC1', // playlist background (blue)     
-         'lightcolor': 'C286BA', // selected text/track highlight (pink)     
-         'screencolor': 'FFFFFF', // screen background (black)     'id': 'playerID',     'autostart': 'true'};  
-         var params = {     'allowfullscreen': 'true',     'allowscriptaccess': 'always',     'bgcolor': '#FFFFFF' }; 
-         var attributes = {     'id': 'playerID',     'name': 'playerID' }; 
-         swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
-     </script> 
-  </head> 
-    <body> 
-      <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer">
-      <a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div> 
-  </body>
-</html>
+<html><br />
+  <head><br />
+    <script src="jwplayer_old/swfobject.js"></script><br />
+    <script type="text/javascript"> var flashvars = {<br />
+         'streamer': 'rtmp://YOUR_SERVER_IP/myapp',<br /> 
+         'file': 'YOUR_FILE_NAME',<br />
+         'type': 'camera',<br />    
+         'controlbar': 'bottom',<br />     
+         'stretching': 'none',<br />     
+         'frontcolor': '86C29D',<br /> 
+         // text & icons (green)<br />    
+         'backcolor': '849BC1', // playlist background (blue)<br />
+         'lightcolor': 'C286BA', // selected text/track highlight (pink)<br />     
+         'screencolor': 'FFFFFF', // screen background (black)<br />
+         'id': 'playerID','autostart': 'true'};<br />  
+         var params = {     'allowfullscreen': 'true',     'allowscriptaccess': 'always',     'bgcolor': '#FFFFFF' };<br /> 
+         var attributes = {     'id': 'playerID',     'name': 'playerID' };<br /> 
+         swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);<br />
+     </script><br /> 
+  </head><br /> 
+    <body><br /> 
+      <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer"><br />
+      <a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div><br /> 
+  </body><br />
+</html><br />
 </plaintext>
 ```
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
- <img src="./assets/images/screenshot_2012-08-29.png">
+ <img src="/assets/images/screenshot_2012-08-29.png">
 
  $ ll /tmp/*flv rw-rr- 1
  <br> 
