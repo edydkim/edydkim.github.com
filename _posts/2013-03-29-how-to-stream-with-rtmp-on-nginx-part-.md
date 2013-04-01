@@ -97,6 +97,7 @@ tags: [NginX, RTMP]
 
 ```
  rtmp {
+
       server {
           listen 1935;
           publish_time_fix off;
@@ -124,7 +125,6 @@ tags: [NginX, RTMP]
 
  record.html
 
-```
 <plaintext>
 <html>
 
@@ -176,7 +176,6 @@ tags: [NginX, RTMP]
 
 </html>
 </plaintext>
-```
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
