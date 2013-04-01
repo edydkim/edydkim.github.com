@@ -138,7 +138,7 @@ tags: [NginX, RTMP]
    
   &lt;htm&gt;
   
-    &lt;head&gt;
+    <head>
   
       <script src="jwplayer_old/swfobject.js"></script>;
      
@@ -175,17 +175,17 @@ tags: [NginX, RTMP]
          swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
        </script>
  
-    &lt;/head&gt; 
+    </head> 
    
-      &lt;body&gt;
+      <body>
      
-       &lt;a href="index.html"&gt;Play&lt;/a&gt; | &lt;b&gt;Record&lt;/b&gt;
+        <a href="index.html">Play</a> | <b>Record</b>
        
-       &lt;div id="playercontainer" class="playercontainer"&gt;
+        <div id="playercontainer" class="playercontainer">
        
-       &lt;a id="player" class="player" href="http://get.adobe.com/flashplayer/"&gt; Get the Adobe Flash Player to see this video.&lt;/a&gt;&lt;/div&gt;
+        <a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div>;
     
-    &lt/body&gt;
+      </body>
 
  &lt;/html&gt;
 
