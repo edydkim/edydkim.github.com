@@ -96,7 +96,6 @@ tags: [NginX, RTMP]
  (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link)
 
 ```
-<div>
 rtmp {
       <br />
       server {<br />
@@ -112,7 +111,6 @@ rtmp {
           }<br />
      }<br />
 }<br />
-</div>
 ```
 
  stop and start the web server, you may stop master and worker processes both of them.
@@ -128,6 +126,7 @@ rtmp {
  record.html
 
 <div>
+```
 <plaintext>
 <html><br />
   <head><br />
@@ -155,11 +154,12 @@ rtmp {
   </body><br />
 </html><br />
 </plaintext>
+```
 </div>
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
- <div><img src="/assets/images/screenshot_2012-08-29.png"></div>
+ <div align="left"><img src="/assets/images/screenshot_2012-08-29.png"></div>
 
  $ ll /tmp/*flv rw-rr- 1
  
