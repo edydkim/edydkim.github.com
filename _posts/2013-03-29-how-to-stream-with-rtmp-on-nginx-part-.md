@@ -96,32 +96,7 @@ tags: [NginX, RTMP]
  (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link)
 
 
- rtmp {
 
-      server {
-      
-          listen 1935;
-      
-          publish_time_fix off;
-      
-          application my_app {
-      
-          	live on;                # stream on live allow
- 	  
- 	        publish all;            # control access privilege
-      
-            allow play all;         # control access privilege
-	  
-	        record all;             # record stream to a file
-      
-            record_max_size 100M;   # set a file size
-	  
-	        record_path /tmp;       # where the file is save
-      
-          }
-     
-     }
- }
 
 
  stop and start the web server, you may stop master and worker processes both of them.
@@ -136,6 +111,7 @@ tags: [NginX, RTMP]
 
  record.html
    
+ 
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
  
