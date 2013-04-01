@@ -191,7 +191,7 @@ tags: [NginX, RTMP]
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
- {% image http:/http://edydkim.github.com/assets/images/screenshot_2012-08-29.png %}
+ {% image http://edydkim.github.com/assets/images/screenshot_2012-08-29.png %}
  
  $ ll /tmp/*flv 
  
