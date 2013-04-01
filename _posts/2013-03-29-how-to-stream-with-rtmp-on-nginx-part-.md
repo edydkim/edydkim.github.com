@@ -155,10 +155,11 @@ rtmp {
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
- <img src="./assets/images/screenshot_2012-08-29.png>
+ <img src="./assets/images/screenshot_2012-08-29.png">
 
  $ ll /tmp/*flv rw-rr- 1
-  nobody nobody 992722 8月 29 11:54 /tmp/mystream.flv
+ <br> 
+ nobody nobody 992722 8月 29 11:54 /tmp/mystream.flv
 
 ### Conclusion
 
