@@ -120,6 +120,7 @@ tags: [NginX, RTMP]
           }
      
       }
+      
     }
 
  stop and start the web server, you may stop master and worker processes both of them.
@@ -189,7 +190,7 @@ tags: [NginX, RTMP]
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
  
- 
+ {% image http://edydkim.github.com/assets/images/screenshot_2012-08-29.png %}
  
  $ ll /tmp/*flv 
  
