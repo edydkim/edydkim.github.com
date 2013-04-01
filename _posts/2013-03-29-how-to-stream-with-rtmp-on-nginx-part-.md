@@ -138,8 +138,8 @@ tags: [NginX, RTMP]
 
  &lt;html&gt;
    &lt;head&gt;
-     <script src="jwplayer_old/swfobject.js"&gt;</script&gt;
-     <script type="text/javascript"&gt; var flashvars = {
+     &lt;script src="jwplayer_old/swfobject.js"&gt;&lt;/script&gt;
+     &lt;script type="text/javascript"&gt; var flashvars = {
          'streamer': 'rtmp://YOUR_SERVER_IP/myapp',
          'file': 'YOUR_FILE_NAME',
          'type': 'camera',
