@@ -95,23 +95,8 @@ tags: [NginX, RTMP]
 
  (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link)
 
-```
- rtmp {
 
-      server {
-          listen 1935;
-          publish_time_fix off;
-          application my_app {
-          	live on;                # stream on live allow
- 	        publish all;            # control access privilege
-                allow play all;         # control access privilege
-	        record all;             # record stream to a file
-                record_max_size 100M;   # set a file size
-	        record_path /tmp;       # where the file is save
-          }
-     }
- }
-```
+
 
  stop and start the web server, you may stop master and worker processes both of them.
 
@@ -125,57 +110,7 @@ tags: [NginX, RTMP]
 
  record.html
 
-<plaintext>
-<html>
 
-  <head>
-
-    <script src="jwplayer_old/swfobject.js"></script>
-
-    <script type="text/javascript"> var flashvars = {
-
-         'streamer': 'rtmp://YOUR_SERVER_IP/myapp',
-
-         'file': 'YOUR_FILE_NAME',
-
-         'type': 'camera',
-
-         'controlbar': 'bottom',
-
-         'stretching': 'none',
-
-         'frontcolor': '86C29D',
-
-         // text & icons (green)
-
-         'backcolor': '849BC1', // playlist background (blue)
-
-         'lightcolor': 'C286BA', // selected text/track highlight (pink)
-
-         'screencolor': 'FFFFFF', // screen background (black)
-
-         'id': 'playerID','autostart': 'true'};
-
-         var params = {     'allowfullscreen': 'true',     'allowscriptaccess': 'always',     'bgcolor': '#FFFFFF' };
-
-         var attributes = {     'id': 'playerID',     'name': 'playerID' };
-
-         swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
-
-     </script>
-
-  </head> 
-
-    <body>
-
-      <a href="index.html">Play</a> | <b>Record</b> <br/> <div id="playercontainer" class="playercontainer"><br />
-
-      <a id="player" class="player" href="http://get.adobe.com/flashplayer/"> Get the Adobe Flash Player to see this video.</a></div>
-
-  </body>
-
-</html>
-</plaintext>
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
