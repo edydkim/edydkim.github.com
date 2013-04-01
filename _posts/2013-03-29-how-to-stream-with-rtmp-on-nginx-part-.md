@@ -135,14 +135,16 @@ tags: [NginX, RTMP]
  each .js and .swf are included test/www directory in nginx-rtmp-module archived.
 
  record.html
-
- &lt;html&gt;
- 
-   &lt;head&gt;
    
-     <script src="jwplayer_old/swfobject.js"></script>;
+  &lt;htm&gt;
+  
+    &lt;head&gt;
+  
+      <script src="jwplayer_old/swfobject.js"></script>;
      
-     &lt;script type="text/javascript"&gt; var flashvars = {
+      <script type="text/javascript">
+        
+         var flashvars = {
      
          'streamer': 'rtmp://YOUR_SERVER_IP/myapp',
          
@@ -171,25 +173,25 @@ tags: [NginX, RTMP]
          var attributes = {'id': 'playerID', 'name': 'playerID' };
          
          swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
-      &lt;/script&gt;
-      
-   &lt;/head&gt; 
+       </script>
+ 
+    &lt;/head&gt; 
    
-     &lt;body&gt;
+      &lt;body&gt;
      
        &lt;a href="index.html"&gt;Play&lt;/a&gt; | &lt;b&gt;Record&lt;/b&gt;
        
        &lt;div id="playercontainer" class="playercontainer"&gt;
        
        &lt;a id="player" class="player" href="http://get.adobe.com/flashplayer/"&gt; Get the Adobe Flash Player to see this video.&lt;/a&gt;&lt;/div&gt;
-
-   &lt;/body&gt;
+    
+    &lt/body&gt;
 
  &lt;/html&gt;
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
- 
- <img src="/assets/images/screenshot_2013-08-29.png">
+
+<img src="/assets/images/screenshot_2013-08-29.png">
  
  $ ll /tmp/*flv 
  
