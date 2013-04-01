@@ -140,7 +140,7 @@ tags: [NginX, RTMP]
  
    &lt;head&gt;
    
-     &lt;script src="jwplayer_old/swfobject.js"&gt;&lt;/script&gt;
+     <script src="jwplayer_old/swfobject.js"></script>;
      
      &lt;script type="text/javascript"&gt; var flashvars = {
      
@@ -188,6 +188,7 @@ tags: [NginX, RTMP]
  &lt;/html&gt;
 
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
+ 
  <img src="/assets/images/screenshot_2013-08-29.png">
  
  $ ll /tmp/*flv 
