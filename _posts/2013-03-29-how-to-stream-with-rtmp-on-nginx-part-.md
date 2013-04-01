@@ -97,30 +97,18 @@ tags: [NginX, RTMP]
 
 ```
  rtmp {
-
       server {
-
           listen 1935;
-
           publish_time_fix off;
-
           application my_app {
-
           	live on;                # stream on live allow
-
  	        publish all;            # control access privilege
-		    
                 allow play all;         # control access privilege
-
 	        record all;             # record stream to a file
-
                 record_max_size 100M;   # set a file size
-
 	        record_path /tmp;       # where the file is save
           }
-
      }
-
  }
 ```
 
