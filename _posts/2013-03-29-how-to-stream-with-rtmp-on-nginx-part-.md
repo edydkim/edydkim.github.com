@@ -95,7 +95,7 @@ tags: [NginX, RTMP]
 
  (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link)
 
-```
+
  rtmp {
 
       server {
@@ -122,7 +122,7 @@ tags: [NginX, RTMP]
      
      }
  }
-```
+
 
  stop and start the web server, you may stop master and worker processes both of them.
 
