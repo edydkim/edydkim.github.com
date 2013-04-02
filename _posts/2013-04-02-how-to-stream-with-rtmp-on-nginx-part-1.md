@@ -68,12 +68,15 @@ You should know about NginX module how to add modules and customize it but not n
 
 Here are files downloaded - nginx-rtmp-module-v0.3.0-1-g8293c42.tar.gz and nginx-1.3.4.tar.gz
 
-$ cd INSTALL_PATH  
-$ tar zxvf nginx-rtmp-module-v0.3.0-1-g8293c42.tar.gz 
-$ cd nginx-1.3.4/  
-$ ./configure --add-module=/usr/local/nginx-rtmp-module --with-debug --without-http_rewrite_module 
-$ make 
+{% capture text %}
+$ cd INSTALL_PATH
+$ tar zxvf nginx-rtmp-module-v0.3.0-1-g8293c42.tar.gz
+$ cd nginx-1.3.4/
+$ ./configure --add-module=/usr/local/nginx-rtmp-module --with-debug --without-http_rewrite_module
+$ make
 $ make install
+{% endcapture %}
+{% include JB/liquid_raw %}
 
 run it, nginx/sbin/nginx
 
@@ -115,22 +118,22 @@ each .js and .swf are included test/www directory in nginx-rtmp-module archived.
 record.html
 
 {% capture text %}...
-	<head>
-		<script src="jwplayer_old/swfobject.js"></script>
-		<script type="text/javascript">
+<head>
+	<script src="jwplayer_old/swfobject.js"></script>
+	<script type="text/javascript">
 		var flashvars =
 		{
-	    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
-   		"file": "YOUR_FILE_NAME",
-    	"type": "camera",
-    	"controlbar": "bottom",
-    	"stretching": "none",
-    	"frontcolor": "86C29D", // text & icons (green)
-    	"backcolor": "849BC1", // playlist background (blue)
-    	"lightcolor": "C286BA", // selected text/track highlight (pink)
-    	"screencolor": "FFFFFF", // screen background (black)
-    	"id": "playerID",
-    	"autostart": "true"
+		    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
+   			"file": "YOUR_FILE_NAME",
+   		 	"type": "camera",
+   		 	"controlbar": "bottom",
+    		"stretching": "none",
+    		"frontcolor": "86C29D", // text & icons (green)
+    		"backcolor": "849BC1", // playlist background (blue)
+    		"lightcolor": "C286BA", // selected text/track highlight (pink)
+    		"screencolor": "FFFFFF", // screen background (black)
+    		"id": "playerID",
+    		"autostart": "true"
 		};
  
 		var params =
@@ -146,14 +149,14 @@ record.html
    	 		"name": "playerID"
 		};
 		swfobject.embedSWF("jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
-		</script>
-	</head>
-	<body>
-		<a href="index.html">Play</a> | <b>Record</b>
-		<br/>
-		<div id="playercontainer" class="playercontainer"><a id="player" class="player" href="http://get.adobe.com/flashplayer/">
-		Get the Adobe Flash Player to see this video.</a></div>
-	</body>
+	</script>
+</head>
+<body>
+	<a href="index.html">Play</a> | <b>Record</b>
+	<br/>
+	<div id="playercontainer" class="playercontainer"><a id="player" class="player" href="http://get.adobe.com/flashplayer/">
+	Get the Adobe Flash Player to see this video.</a></div>
+</body>
 ...{% endcapture %}
 {% include JB/liquid_raw %}
    
@@ -161,8 +164,11 @@ load the html on browser and check the path whether .flv stream file exists wher
 
 [<img src="http://edydkim.github.com/assets/images/screenshot_2012-08-29.png">](http://edydkim.github.com/assets/images/screenshot_2012-08-29.png)
  
+{% capture text %} 
 $ ll /tmp/*flv
 rw-rr- 1 nobody nobody 992722 8月 29 11:54 /tmp/mystream.flv
+{% endcapture %}
+{% include JB/liquid_raw %}
 
 ## Conclusion
 
