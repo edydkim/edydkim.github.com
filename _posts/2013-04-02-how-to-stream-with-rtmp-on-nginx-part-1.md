@@ -120,32 +120,32 @@ record.html
 		<script type="text/javascript">
 		var flashvars =
 		{
-	    'streamer': 'rtmp://YOUR_SERVER_IP/myapp',
-   		'file': 'YOUR_FILE_NAME',
-    	'type': 'camera',
-    	'controlbar': 'bottom',
-    	'stretching': 'none',
-    	'frontcolor': '86C29D', // text & icons (green)
-    	'backcolor': '849BC1', // playlist background (blue)
-    	'lightcolor': 'C286BA', // selected text/track highlight (pink)
-    	'screencolor': 'FFFFFF', // screen background (black)
-    	'id': 'playerID',
-    	'autostart': 'true'
+	    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
+   		"file": "YOUR_FILE_NAME",
+    	"type": "camera",
+    	"controlbar": "bottom",
+    	"stretching": "none",
+    	"frontcolor": "86C29D", // text & icons (green)
+    	"backcolor": "849BC1", // playlist background (blue)
+    	"lightcolor": "C286BA", // selected text/track highlight (pink)
+    	"screencolor": "FFFFFF", // screen background (black)
+    	"id": "playerID",
+    	"autostart": "true"
 		};
  
 		var params =
 		{
-   			'allowfullscreen': 'true',
-    		'allowscriptaccess': 'always',
-    		'bgcolor': '#FFFFFF'
+   			"allowfullscreen": "true",
+    		"allowscriptaccess": "always",
+    		"bgcolor": "#FFFFFF"
 		};
  
 		var attributes =
 		{
-    		'id': 'playerID',
-   	 		'name': 'playerID'
+    		"id": "playerID",
+   	 		"name": "playerID"
 		};
-		swfobject.embedSWF('jwplayer_old/player.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
+		swfobject.embedSWF('jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
 		</script>
 	</head>
 	<body>
@@ -159,6 +159,7 @@ record.html
    
 load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
+<img src="http://edydkim.github.com/assets/images/screenshot_2012-08-29.png">
 <http://edydkim.github.com/assets/images/screenshot_2012-08-29.png>
  
 $ ll /tmp/*flv
@@ -166,7 +167,7 @@ rw-rr- 1 nobody nobody 992722 8月 29 11:54 /tmp/mystream.flv
 
 ## Conclusion
 
-As you have read or done, it is simple you aim't install any produce licensed like Flash Media Server... 
+As you have read or done, it is simple you aim not install any produce licensed like Flash Media Server... 
 Of course someone wonder what if have a number of performance cpu, memory and so on such a situation -  on a big site and have many many users.. also need to test performance continuously but you do remember, as I mention agenda above, the most importance is the purpose what situation you want to use, service and publish to users. At least I do convince to satisfy that on ad-hoc service.
 In this part, let me show you some utilities..
 
