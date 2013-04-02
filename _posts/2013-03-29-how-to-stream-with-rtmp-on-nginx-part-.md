@@ -95,7 +95,6 @@ tags: [NginX, RTMP]
 
  (I do not want to explain the others, fastcgi.conf and so on, get a chance to know about NginX web server and join to the study group if you want , attach our group link)
 
-
  stop and start the web server, you may stop master and worker processes both of them.
 
  Note, here is FFmpeg is open source framework, able to decode, encode, transcode, stream... to url on RTMP, for instance, /usr/local/ffmpeg-0.11.1/ffmpeg -loglevel verbose -re -i /tmp/FILE_NAME  -f flv rtmp://YOUR_SERVER_IP/my_app/YOUR_FILE_NAME
@@ -108,11 +107,9 @@ tags: [NginX, RTMP]
 
  record.html
    
- 
-
  load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
  
- 
+ {% image http://edydkim.github.com/assets/images/screenshot_2012-08-29.png %}
  
  $ ll /tmp/*flv 
  
