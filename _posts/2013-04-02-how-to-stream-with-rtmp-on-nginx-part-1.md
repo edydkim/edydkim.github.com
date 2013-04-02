@@ -145,7 +145,7 @@ record.html
     		"id": "playerID",
    	 		"name": "playerID"
 		};
-		swfobject.embedSWF('jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
+		swfobject.embedSWF("jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
 		</script>
 	</head>
 	<body>
@@ -159,8 +159,7 @@ record.html
    
 load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
-<img src="http://edydkim.github.com/assets/images/screenshot_2012-08-29.png">
-<http://edydkim.github.com/assets/images/screenshot_2012-08-29.png>
+[<img src="http://edydkim.github.com/assets/images/screenshot_2012-08-29.png">](http://edydkim.github.com/assets/images/screenshot_2012-08-29.png)
  
 $ ll /tmp/*flv
 rw-rr- 1 nobody nobody 992722 8月 29 11:54 /tmp/mystream.flv
