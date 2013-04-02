@@ -16,11 +16,11 @@ Recently, Streaming Service is contemporary and open but high-level performance 
 ### Abstract
 ### Design
 
-0. Prerequisite
-1. Create RTMP module with C based on Unix programming.
-2. Then rebuild NginX with it.
-3. Configure .conf file
-4. Access the site and record on live
+### 0. Prerequisite
+### 1. Create RTMP module with C based on Unix programming.
+### 2. Then rebuild NginX with it.
+### 3. Configure .conf file
+### 4. Access the site and record on live
 
 ### Conclusion
 ### References
@@ -29,15 +29,15 @@ Recently, Streaming Service is contemporary and open but high-level performance 
 
 NginX is a well-known web server asynchronous each request, RTMP is protocol developed by Adobe (Macromedia) for streaming on flash player the specification has been published in 2009. It is a goal to implement RTMP service running on NginX as media server. There are two parts record a stream and publish it on live. In this part, I want to clear how to record a live stream to a file using RTMP, next to how to publishing about those. See what I try out below.
 
-0. Prerequisite
+### 0. Prerequisite
 
-1. Create RTMP module with C based on Unix programming.
+### 1. Create RTMP module with C based on Unix programming.
 
-2. Then rebuild NginX with it.
+### 2. Then rebuild NginX with it.
 
-3. Configure .conf file
+### 3. Configure .conf file
 
-4. Access the site and record on live
+### 4. Access the site and record on live
 
 ## Design
 
@@ -66,11 +66,11 @@ Prior to make and build let me skim those sources in nginx-rtmp-module.
 As you can see, it is simple category - conduct with NginX, control packet, send and receive each event and command (record, so on)
 Most heady files are blow.
 
-- control RTMP from request on NginX referenced their modules
-ngx_rtmp.h
+- **control RTMP from request on NginX referenced their modules**
+  ngx_rtmp.h
 
-- metadata 
-ngx_rtmp_core_moduel.h
+- **metadata**
+  ngx_rtmp_core_moduel.h
 
 You should know about NginX module how to add modules and customize it but not no need to fall down that hole.
 
@@ -111,6 +111,7 @@ rtmp {
     }
 }
 ...{% endcapture %}
+{% include JB/liquid_raw %}
 
 stop and start the web server, you may stop master and worker processes both of them.
 
@@ -166,6 +167,7 @@ record.html
 	</body>
 </html>
 ...{% endcapture %}
+{% include JB/liquid_raw %}
    
 load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
 
