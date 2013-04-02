@@ -11,33 +11,23 @@ Recently, Streaming Service is contemporary and open but high-level performance 
 
 ## Contents
 
-### Preface
-### Contents
-### Abstract
-### Design
+- **Preface**
+- **Contents**
+- **Abstract**
+- **Design**
 
-### 0. Prerequisite
-### 1. Create RTMP module with C based on Unix programming.
-### 2. Then rebuild NginX with it.
-### 3. Configure .conf file
-### 4. Access the site and record on live
+  0. Prerequisite
+  1. Create RTMP module with C based on Unix programming.
+  2. Then rebuild NginX with it.
+  3. Configure .conf file
+  4. Access the site and record on live
 
-### Conclusion
-### References
+- **Conclusion**
+- **References**
 
 ## Abstract
 
 NginX is a well-known web server asynchronous each request, RTMP is protocol developed by Adobe (Macromedia) for streaming on flash player the specification has been published in 2009. It is a goal to implement RTMP service running on NginX as media server. There are two parts record a stream and publish it on live. In this part, I want to clear how to record a live stream to a file using RTMP, next to how to publishing about those. See what I try out below.
-
-### 0. Prerequisite
-
-### 1. Create RTMP module with C based on Unix programming.
-
-### 2. Then rebuild NginX with it.
-
-### 3. Configure .conf file
-
-### 4. Access the site and record on live
 
 ## Design
 
@@ -124,8 +114,7 @@ each .js and .swf are included test/www directory in nginx-rtmp-module archived.
 
 record.html
 
-{% capture text %}...   
-<html>
+{% capture text %}...
 	<head>
 		<script src="jwplayer_old/swfobject.js"></script>
 		<script type="text/javascript">
@@ -165,7 +154,6 @@ record.html
 		<div id="playercontainer" class="playercontainer"><a id="player" class="player" href="http://get.adobe.com/flashplayer/">
 		Get the Adobe Flash Player to see this video.</a></div>
 	</body>
-</html>
 ...{% endcapture %}
 {% include JB/liquid_raw %}
    
