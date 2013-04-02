@@ -80,10 +80,15 @@ tags: [NginX, RTMP]
  Here are files downloaded - nginx-rtmp-module-v0.3.0-1-g8293c42.tar.gz and nginx-1.3.4.tar.gz
 
  $ cd INSTALL_PATH  
- $ tar zxvf nginx-rtmp-module-v0.3.0-1-g8293c42.tar.gz  
+ 
+ $ tar zxvf nginx-rtmp-module-v0.3.0-1-g8293c42.tar.gz
+ 
  $ cd nginx-1.3.4/  
+ 
  $ ./configure --add-module=/usr/local/nginx-rtmp-module --with-debug --without-http_rewrite_module 
+ 
  $ make 
+ 
  $ make install
 
  run it, nginx/sbin/nginx
@@ -112,7 +117,7 @@ tags: [NginX, RTMP]
  
  {% image http://edydkim.github.com/assets/images/screenshot_2012-08-29.png %}
  
- $ ll /tmp/*flv 
+ $ ll /tmp/*flv
  
  rw-rr- 1
  
