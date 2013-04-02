@@ -118,7 +118,6 @@ each .js and .swf are included test/www directory in nginx-rtmp-module archived.
 record.html
 
 {% capture text %}...
-<head>
 	<script src="jwplayer_old/swfobject.js"></script>
 	<script type="text/javascript">
 		var flashvars =
@@ -128,10 +127,10 @@ record.html
    		 	"type": "camera",
    		 	"controlbar": "bottom",
     		"stretching": "none",
-    		"frontcolor": "86C29D", // text & icons (green)
-    		"backcolor": "849BC1", // playlist background (blue)
-    		"lightcolor": "C286BA", // selected text/track highlight (pink)
-    		"screencolor": "FFFFFF", // screen background (black)
+    		"frontcolor": "86C29D", 		// text & icons (green)
+    		"backcolor": "849BC1", 			// playlist background (blue)
+    		"lightcolor": "C286BA", 		// selected text/track highlight (pink)
+    		"screencolor": "FFFFFF", 		// screen background (black)
     		"id": "playerID",
     		"autostart": "true"
 		};
@@ -150,7 +149,6 @@ record.html
 		};
 		swfobject.embedSWF("jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
 	</script>
-</head>
 <body>
 	<a href="index.html">Play</a> | <b>Record</b>
 	<br/>
@@ -176,13 +174,13 @@ As you have read or done, it is simple you aim not install any produce licensed 
 Of course someone wonder what if have a number of performance cpu, memory and so on such a situation -  on a big site and have many many users.. also need to test performance continuously but you do remember, as I mention agenda above, the most importance is the purpose what situation you want to use, service and publish to users. At least I do convince to satisfy that on ad-hoc service.
 In this part, let me show you some utilities..
 
-ffmpeg - http://ffmpeg.org/index.html
-ffplay - http://ffmpeg.org/documentation.html
-rtmpdump - http://all-streaming-media.com/record-video-stream/rtmpdump-freeware-console-RTMP-downloading-application.htm
+ffmpeg - [http://ffmpeg.org/index.html](http://ffmpeg.org/index.html)
+ffplay - [http://ffmpeg.org/documentation.html](http://ffmpeg.org/documentation.html)
+rtmpdump - [http://all-streaming-media.com/record-video-stream/rtmpdump-freeware-console-RTMP-downloading-application.htm](http://all-streaming-media.com/record-video-stream/rtmpdump-freeware-console-RTMP-downloading-application.htm)
 
 ## References
 
-※1:github open source group, https://github.com/arut/nginx-rtmp-module
-RTMP - http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol
-NginX - www.nginx.org, http://en.wikipedia.org/wiki/Nginx
+※1:github open source group, [https://github.com/arut/nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)
+RTMP - [http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol](http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol)
+NginX - [www.nginx.org, http://en.wikipedia.org/wiki/Nginx](www.nginx.org, http://en.wikipedia.org/wiki/Nginx)
 Network - The Linux Programming Interface : A Unix and Linux System Programming Handbook by Michael Kerrisk 
