@@ -189,3 +189,5 @@ RTMP - [http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol](http://en.wik
 NginX - [http://www.nginx.org](http://www.nginx.org), [http://en.wikipedia.org/wiki/Nginx](http://en.wikipedia.org/wiki/Nginx)
 
 Network - The Linux Programming Interface : A Unix and Linux System Programming Handbook by Michael Kerrisk 
+
+The article PDF - <http://edydkim.github.com/assets/pdf/kim_daiki-How-to-stream-with-RTMP-on-NginX-Part-Ⅰ.pdf>
