@@ -117,7 +117,7 @@ each .js and .swf are included test/www directory in nginx-rtmp-module archived.
 
 record.html
 
-{% capture text %}<!--...
+{% capture text %}...
 <head>
 	<script src="jwplayer_old/swfobject.js"></script>
 	<script type="text/javascript">
@@ -155,7 +155,7 @@ record.html
 	<div id="playercontainer" class="playercontainer"><a id="player" class="player" href="http://get.adobe.com/flashplayer/">
 	Get the Adobe Flash Player to see this video.</a></div>
 </body>
-...-->{% endcapture %}
+...{% endcapture %}
 {% include JB/liquid_raw %}
    
 load the html on browser and check the path whether .flv stream file exists where you want to save it have written down on .conf.
@@ -186,6 +186,6 @@ rtmpdump - [http://all-streaming-media.com/record-video-stream/rtmpdump-freeware
 
 RTMP - [http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol](http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol)
 
-NginX - [http://www.nginx.org](http://www.nginx.org), [http://en.wikipedia.org/wiki/Nginx](www.nginx.org, http://en.wikipedia.org/wiki/Nginx)
+NginX - [http://www.nginx.org](http://www.nginx.org), [http://en.wikipedia.org/wiki/Nginx](http://en.wikipedia.org/wiki/Nginx)
 
 Network - The Linux Programming Interface : A Unix and Linux System Programming Handbook by Michael Kerrisk 
