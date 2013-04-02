@@ -134,14 +134,12 @@ record.html
     		"id": "playerID",
     		"autostart": "true"
 		};
- 
 		var params =
 		{
    			"allowfullscreen": "true",
     		"allowscriptaccess": "always",
     		"bgcolor": "#FFFFFF"
 		};
- 
 		var attributes =
 		{
     		"id": "playerID",
@@ -175,12 +173,17 @@ Of course someone wonder what if have a number of performance cpu, memory and so
 In this part, let me show you some utilities..
 
 ffmpeg - [http://ffmpeg.org/index.html](http://ffmpeg.org/index.html)
+
 ffplay - [http://ffmpeg.org/documentation.html](http://ffmpeg.org/documentation.html)
+
 rtmpdump - [http://all-streaming-media.com/record-video-stream/rtmpdump-freeware-console-RTMP-downloading-application.htm](http://all-streaming-media.com/record-video-stream/rtmpdump-freeware-console-RTMP-downloading-application.htm)
 
 ## References
 
 ※1:github open source group, [https://github.com/arut/nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)
+
 RTMP - [http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol](http://en.wikipedia.org/wiki/Real_Time_Messaging_Protocol)
+
 NginX - [www.nginx.org, http://en.wikipedia.org/wiki/Nginx](www.nginx.org, http://en.wikipedia.org/wiki/Nginx)
+
 Network - The Linux Programming Interface : A Unix and Linux System Programming Handbook by Michael Kerrisk 
