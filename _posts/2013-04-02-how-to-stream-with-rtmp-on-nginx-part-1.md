@@ -123,7 +123,7 @@ record.html
 	<script type="text/javascript">
 		var flashvars =
 		{
-		    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
+		    streamer: rtmp://YOUR_SERVER_IP/myapp,
 ...{% endcapture %}
 {% include JB/liquid_raw %}		    
 
