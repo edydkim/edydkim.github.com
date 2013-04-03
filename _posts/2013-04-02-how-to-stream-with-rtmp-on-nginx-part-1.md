@@ -132,16 +132,16 @@ record.html
     		backcolor: 849BC1, 			// playlist background (blue)
     		lightcolor: C286BA, 		// selected text/track highlight (pink)
     		screencolor: FFFFFF, 		// screen background (black)
+...{% endcapture %}
+{% include JB/liquid_raw %}
+{% capture text %}...    		
     		id: playerID,
     		autostart: true
 		};
 		var params =
 		{
    			allowfullscreen: true,
-    		allowscriptaccess: always,
-...{% endcapture %}
-{% include JB/liquid_raw %}
-{% capture text %}...    		
+    		allowscriptaccess: always,    		
     		bgcolor: #FFFFFF
 		};
 		var attributes =
