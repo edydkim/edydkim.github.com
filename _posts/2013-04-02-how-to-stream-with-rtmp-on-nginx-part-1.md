@@ -146,7 +146,7 @@ record.html
     		id: playerID,
    	 		name: playerID
 		};
-		swfobject.embedSWF("jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
+		swfobject.embedSWF(jwplayer_old/player.swf, player, 320, 260, 9.0.124, false, flashvars, params, attributes);
 	</script>
 </head>
 <body>
