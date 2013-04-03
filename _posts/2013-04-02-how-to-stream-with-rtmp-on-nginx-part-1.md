@@ -124,37 +124,27 @@ record.html
 		var flashvars =
 		{
 		    streamer: rtmp://YOUR_SERVER_IP/myapp,
-...{% endcapture %}
-{% include JB/liquid_raw %}		    
-
-{% capture text %}...
-<head>
-	<script src="jwplayer_old/swfobject.js"></script>
-	<script type="text/javascript">
-		var flashvars =
-		{
-		    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
-   			"file": "YOUR_FILE_NAME",
-   		 	"type": "camera",
-   		 	"controlbar": "bottom",
-    		"stretching": "none",
-    		"frontcolor": "86C29D", 		// text & icons (green)
-    		"backcolor": "849BC1", 			// playlist background (blue)
-    		"lightcolor": "C286BA", 		// selected text/track highlight (pink)
-    		"screencolor": "FFFFFF", 		// screen background (black)
-    		"id": "playerID",
-    		"autostart": "true"
+   			file: YOUR_FILE_NAME,
+   		 	type: camera,
+   		 	controlbar: bottom,
+    		stretching: none,
+    		frontcolor: 86C29D, 		// text & icons (green)
+    		backcolor: 849BC1, 			// playlist background (blue)
+    		lightcolor: C286BA, 		// selected text/track highlight (pink)
+    		screencolor: FFFFFF, 		// screen background (black)
+    		id: playerID,
+    		autostart: true
 		};
 		var params =
 		{
-   			"allowfullscreen": "true",
-    		"allowscriptaccess": "always",
-    		"bgcolor": "#FFFFFF"
+   			allowfullscreen: true,
+    		allowscriptaccess: always,
+    		bgcolor: #FFFFFF
 		};
 		var attributes =
 		{
-    		"id": "playerID",
-   	 		"name": "playerID"
+    		id: playerID,
+   	 		name: playerID
 		};
 		swfobject.embedSWF("jwplayer_old/player.swf", "player", "320", "260", "9.0.124", false, flashvars, params, attributes);
 	</script>
