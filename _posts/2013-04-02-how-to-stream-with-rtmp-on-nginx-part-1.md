@@ -123,6 +123,16 @@ record.html
 	<script type="text/javascript">
 		var flashvars =
 		{
+		    streamer: rtmp://YOUR_SERVER_IP/myapp,
+...{% endcapture %}
+{% include JB/liquid_raw %}		    
+
+{% capture text %}...
+<head>
+	<script src="jwplayer_old/swfobject.js"></script>
+	<script type="text/javascript">
+		var flashvars =
+		{
 		    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
    			"file": "YOUR_FILE_NAME",
    		 	"type": "camera",
