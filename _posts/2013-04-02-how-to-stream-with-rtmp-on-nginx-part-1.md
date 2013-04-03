@@ -123,7 +123,29 @@ record.html
 	<script type="text/javascript">
 		var flashvars =
 		{
-		    streamer: rtmp://YOUR_SERVER_IP/myapp,
+		    "streamer": "rtmp://YOUR_SERVER_IP/myapp",
+   			"file": "YOUR_FILE_NAME",
+   		 	"type": "camera",
+   		 	"controlbar": "bottom",
+    		"stretching": "none",
+    		"frontcolor": "86C29D", 		// text & icons (green)
+    		"backcolor": "849BC1", 			// playlist background (blue)
+    		"lightcolor": "C286BA", 		// selected text/track highlight (pink)
+    		"screencolor": "FFFFFF", 		// screen background (black)
+    		"id": "playerID",
+    		"autostart": "true"
+		};
+		var params =
+		{
+   			"allowfullscreen": "true",
+    		"allowscriptaccess": "always",
+    		"bgcolor": "#FFFFFF"
+		};
+		var attributes =
+		{
+    		"id": "playerID",
+   	 		"name": "playerID"
+		};
 ...{% endcapture %}
 {% include JB/liquid_raw %}		    
 
