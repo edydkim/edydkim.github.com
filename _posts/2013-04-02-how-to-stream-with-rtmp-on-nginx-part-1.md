@@ -128,13 +128,13 @@ record.html
    		 	type: camera,
    		 	controlbar: bottom,
     		stretching: none,
+...{% endcapture %}
+{% include JB/liquid_raw %}
+{% capture text %}...    		
     		frontcolor: 86C29D, 		// text & icons (green)
     		backcolor: 849BC1, 			// playlist background (blue)
     		lightcolor: C286BA, 		// selected text/track highlight (pink)
     		screencolor: FFFFFF, 		// screen background (black)
-...{% endcapture %}
-{% include JB/liquid_raw %}
-{% capture text %}...    		
     		id: playerID,
     		autostart: true
 		};
