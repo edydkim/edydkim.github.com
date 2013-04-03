@@ -149,6 +149,9 @@ record.html
 		swfobject.embedSWF(jwplayer_old/player.swf, player, 320, 260, 9.0.124, false, flashvars, params, attributes);
 	</script>
 </head>
+...{% endcapture %}
+{% include JB/liquid_raw %}
+{% capture text %}...
 <body>
 	<a href="index.html">Play</a> | <b>Record</b>
 	<br/>
