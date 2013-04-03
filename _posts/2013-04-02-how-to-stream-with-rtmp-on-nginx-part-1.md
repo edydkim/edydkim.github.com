@@ -128,10 +128,10 @@ record.html
    		 	type: camera,
    		 	controlbar: bottom,
     		stretching: none,    		
-    		frontcolor: 86C29D, 		// text and icons (green)    		
-    		backcolor: 849BC1, 			// playlist background (blue)
-    		lightcolor: C286BA, 		// selected text/track highlight (pink)
-    		screencolor: FFFFFF, 		// screen background (black)
+    		frontcolor: 86C29D,         // text and icons (green)    		
+    		backcolor: 849BC1,          // playlist background (blue)
+    		lightcolor: C286BA,         // selected text/track highlight (pink)
+    		screencolor: FFFFFF,        // screen background (black)
     		id: playerID,
     		autostart: true
 		};
