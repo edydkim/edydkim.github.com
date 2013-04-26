@@ -9,14 +9,14 @@ tags: [Hypertable, HBase, BigTable]
 
 NoSQL is the most interesting parts in database system recently. There are two reason why use that - Scalability and Productivity. Many NoSQL Database have those features and difficult to consider to choose one. Here is very powerful and sophisticate one, Hypertable based on Google BigTable, like to recommend to all. I will focus to how to use it in real time application, not only logging. Is it possible mission critical state something like user table no one believe that a big NoSQL database used to retrieve single row in CRUD. I hope this will be helpful to choose a database out of them when you wonder.
 
-+Note+: This paper approaches how to programm and implement in a real application, if I get a chance next time will see to benchmark performance of distributed environments.
+**Note**: This paper approaches how to programm and implement in a real application, if I get a chance next time will see to benchmark performance of distributed environments.
 
-+Tip+: What is the DBMS and How to store data shortly?
-* RDBMS & ORDBMS : structured and object-oriented data
-* Document-oriented DBMS : semi-structured data like xml, json based on documents
-* Graph DBMS : edges and nodes which have properties data represented graph
-* Column-oriented DBMS : atttribute data
-* Typically row-oriented (=row based) database is mentioned to Relational DBMS & ORDBMS and column-oriented (= column based) & document-oriented is mentioned to NoSQL database.
+**Tip**: What is the DBMS and How to store data shortly?
+- ** RDBMS & ORDBMS : structured and object-oriented data
+- ** Document-oriented DBMS : semi-structured data like xml, json based on documents
+- ** Graph DBMS : edges and nodes which have properties data represented graph
+- ** Column-oriented DBMS : atttribute data
+- ** Typically row-oriented (=row based) database is mentioned to Relational DBMS & ORDBMS and column-oriented (= column based) & document-oriented is mentioned to NoSQL database.
 
 ## Contents
 
@@ -41,28 +41,28 @@ NoSQL is the most interesting parts in database system recently. There are two r
 Hypertable is a high-performance alternative to HBase on Hadoop. The essential characteristics of Hypertable are quite similar to HBase, which in turn is a clone of the Google Bigtable. Hypertable is actually not a new project. It started around the same time as HBase in 2007. Hypertable runs on top of a distributed filesystem like HDFS.
 
 In HBase, column-family-centric data is stored in a row-key sorted and ordered manner by Map/Reduce. The each cell of data maintains multiple versions of data. In Hypertable all version information is appended to the row-keys. The version information is identified via timestamps. All data for all versions for each row-key is stored in a sorted manner for each column-family and is supported multiple indices.
-*1 reference source : Professional NoSQL by Shashank Tiwari^
+※1 reference source : Professional NoSQL by Shashank Tiwari
 
 ## Design
 
 ### System overview
 
 [http://hypertable.com/uploads/Overview.png]
-*2 reference source : [http://hypertable.com](http://hypertable.com)
+※2 reference source : [http://hypertable.com](http://hypertable.com)
 
-*Hypersapce* is a filesystem for locking and storing small amounts of metadata means the root of all distributed data structures. *Master* has all meta information of operations such as creating and deleting tables. *Master* has not a single point of failure as client data does not move through it for short periods of time when switch standby to primary. *Master* is also responsible for range server load balancing. *Range server* manage ranges of table data, all reading and writing data. *DFS Broker* has the interface to *Hypersapce*. it translates normalized filesystem requests into native filesystem requests for HDFS, MapReduce, local and so on and vice-versa.
+**Hypersapce** is a filesystem for locking and storing small amounts of metadata means the root of all distributed data structures. *Master* has all meta information of operations such as creating and deleting tables. *Master* has not a single point of failure as client data does not move through it for short periods of time when switch standby to primary. *Master* is also responsible for range server load balancing. *Range server* manage ranges of table data, all reading and writing data. *DFS Broker* has the interface to *Hypersapce*. it translates normalized filesystem requests into native filesystem requests for HDFS, MapReduce, local and so on and vice-versa.
 
 ### Key and Value
 
 [<img src="http://edydkim.github.com/assets/images/Data_Representation.jpg">]
 
 Here are some check points to need to know.
-*Control* describes the format of remaining fields. ex) HAVE REVISION = 0x80, HAVE TIMESTAMP = 0x40, AUTO TIMESTAMP = 0x20, SHARED = 0x10, TS_CHRONOLOGICAL = 0x01
-*flag* is a logical delete flag to be garbage collected.
+**Control** describes the format of remaining fields. ex) HAVE REVISION = 0x80, HAVE TIMESTAMP = 0x40, AUTO TIMESTAMP = 0x20, SHARED = 0x10, TS_CHRONOLOGICAL = 0x01
+**flag** is a logical delete flag to be garbage collected.
 
 ### Access group
 
-Would you have head about Partitioning in some RDBMS? The *Access group* provide the all data defined the access group to store the same disk together. It can be limited Disk I/O and the frequency by reducing the amount of data transferred from disk during query execution.
+Would you have head about Partitioning in some RDBMS? The **Access group** provide the all data defined the access group to store the same disk together. It can be limited Disk I/O and the frequency by reducing the amount of data transferred from disk during query execution.
 
 {% capture text %}
 create table User (
@@ -86,7 +86,7 @@ select department from User;
 
 It is very important that the table can have one more indices or not about each a single column family. Hypertable has two types of indices: a cell value index and qualifier index. *A cell value index* scans on a single column family that do an exact match or prefix match of the value, and *qualifier index* scans on same as a cell valud index but of the column qualifier.
 
-+Note+: The indices is stored index table in same namespace as the primary table. You need to consider additional disk storage for indexing data and cause a very small performance impact of side effect for inserting data.
+**Note**: The indices is stored index table in same namespace as the primary table. You need to consider additional disk storage for indexing data and cause a very small performance impact of side effect for inserting data.
 
 How to define and see below:
 {% capture text %}
@@ -180,7 +180,7 @@ Throughput: 1872.66 cells/s
 
 ## Installation
 
-Hypertable standalone can downlaod here: [http://hypertable.com/download/0971/]
+Hypertable standalone can downlaod here: [http://hypertable.com/download/0971/](http://hypertable.com/download/0971/)
 (this paper is tried Hypertable Binary Version 0.9.7.1)
 Before follow steps below, you better to make a user as owner.
 
@@ -342,21 +342,21 @@ So, how to use this for work on actual fields.
 
 Let's try each methods of retreiving data below:
 
-h4. 0. Prerequisite
+### 0. Prerequisite
 
-h4. 1. HQL Query
+### 1. HQL Query
 
-h4. 2. Shared Mutex
+### 2. Shared Mutex
 
-h4. 3. Asynchronization
+### 3. Asynchronization
 
-h4. 4. Put them into one table togather
+### 4. Put them into one table togather
 
-h4. 5. Delete all or each value
+### 5. Delete all or each value
 
 Let's try all of them.
 
-h4. 0. Prerequisite
+### 0. Prerequisite
 
 
 h5. 0-1. Create namespace
@@ -481,7 +481,7 @@ create table (col);
 {% endcapture %}
 {% include JB/liquid_raw %}
 
-h4. 1. HQL Query : a source of HQL Query.
+### 1. HQL Query : a source of HQL Query.
 
 {code:title=HQLTest.java|borderStyle=solid}
 package org.hypertable.examples.justdoit;
@@ -620,7 +620,7 @@ beer : Cell(key:Key(row:000, column_family:col, column_qualifier:test, timestamp
 {% endcapture %}
 {% include JB/liquid_raw %}
 
-h4. 2. Shared Mutex : a source of Shared Mutex.
+### 2. Shared Mutex : a source of Shared Mutex.
 
 {code:title=SharedMutexTest.java|borderStyle=solid}
 package org.hypertable.examples.justdoit;
@@ -780,7 +780,7 @@ IamSecond
 {% endcapture %}
 {% include JB/liquid_raw %}
 
-h4. 3. Asynchronization : a source of Asynchronization.
+### 3. Asynchronization : a source of Asynchronization.
 
 {code:title=ASyncTest.java|borderStyle=solid}
 package org.hypertable.examples.justdoit;
@@ -961,7 +961,7 @@ looser
 {% endcapture %}
 {% include JB/liquid_raw %}
 
-h4. Put them into one table togather.
+### Put them into one table togather.
 
 Try it to make one class then check how to be synchronized and asynchronized.
 
@@ -970,7 +970,7 @@ create table AllTest(hql_col, mutex_col, async_col);
 {% endcapture %}
 {% include JB/liquid_raw %}
 
-h4. Delete all or each value
+### Delete all or each value
 
 Key is necessary and column or column qualitifier is optional.
 
@@ -984,20 +984,20 @@ delete col from JustDoItHQLTest where row = '000';
 
 ## Benchmark released (Hypertable vs HBase)
 
-See details [http://hypertable.com/why_hypertable/hypertable_vs_hbase_2/] for performance evaluation
-^\*3 reference source :^ ^[http://hypertable.com]^
+See details [http://hypertable.com/why_hypertable/hypertable_vs_hbase_2/](http://hypertable.com/why_hypertable/hypertable_vs_hbase_2/) for performance evaluation
+※3 reference source : [http://hypertable.com](http://hypertable.com)
 
 ### Random write
 
-!http://hypertable.com/uploads/perfeval/test2/test2-random-write-insert-throughput.png!
+[http://hypertable.com/uploads/perfeval/test2/test2-random-write-insert-throughput.png]
 
 ### Scan
 
-!http://hypertable.com/uploads/perfeval/test2/test2-scan-cell-throughput.png!
+[http://hypertable.com/uploads/perfeval/test2/test2-scan-cell-throughput.png]
 
 ### Random read
 
-!http://hypertable.com/uploads/perfeval/test2/test2-random-read-zipfian.png!
+[http://hypertable.com/uploads/perfeval/test2/test2-random-read-zipfian.png]
 
 ## Summary
 
@@ -1005,9 +1005,9 @@ Map/Reduce model is not new concept but validated High Scalability in distribute
 
 ## References
 
-^\*1^: some quotation taken from the book - Professional NoSQL by Shashank Tiwari
-^\*2, \*3^: source from hypertable Inc., [http://www.hypertable.com/]
-Github open source group: [https://github.com/hypertable]
+※1 : some quotation taken from the book - Professional NoSQL by Shashank Tiwari
+※2, ※3 : source from hypertable Inc., [http://www.hypertable.com/](http://www.hypertable.com/)
+Github open source group: [https://github.com/hypertable](https://github.com/hypertable)
 Paper: HBase and Hypertable for large scale distributed storage systems by Ankur Khetrapal, Vinay Ganesh@cs.purdue.edu
 
 Here is as Japanese.
@@ -1015,12 +1015,12 @@ Here is as Japanese.
 ## 概要
 データベースの選定、特にNoSQLデータベースにおいて、一番重要視されることは拡張性と生産性である。本書では左記2点の観点からログングなどの用途に限らず、リアルアプリケーション開発のCRUDにてどのように使われるかをその仕組み、簡単なアーキテクチャとソースコードから説明する。本書が数多くあるNoSQLデータベースの中、比較や選定に少しでも役に立てればと思う。
 
-+Tip+:DBMS属するデータの種類
-* RDBMS & ORDBMS（関係データベース管理システムとオブジェクト関係データベース管理システム）：構造型、又はオブジェクト指向データ
-* Document-DBMS（ドキュメントデータベース管理システム）：xmlやjsonのようなテキスト形の準構造型データ
-* Graph-DBMS（グラフデータベース）：頂点と節点の関係性を表すデータ
-* Column-oriented DBMS（列指向データベース管理システム）：非定型の類似属性データ
-* 一般的にターミノロジーとして、Row-ColumnをTurple-Attribute、又はRecord-Elementと呼ぶ。数学やコンピュータサイエンスなど学文ごとに呼び方が異なるが、大抵は同一の意味を持つことが多い。
+**Tip**+:DBMS属するデータの種類
+- ** RDBMS & ORDBMS（関係データベース管理システムとオブジェクト関係データベース管理システム）：構造型、又はオブジェクト指向データ
+- ** Document-DBMS（ドキュメントデータベース管理システム）：xmlやjsonのようなテキスト形の準構造型データ
+- ** Graph-DBMS（グラフデータベース）：頂点と節点の関係性を表すデータ
+- ** Column-oriented DBMS（列指向データベース管理システム）：非定型の類似属性データ
+- ** 一般的にターミノロジーとして、Row-ColumnをTurple-Attribute、又はRecord-Elementと呼ぶ。数学やコンピュータサイエンスなど学文ごとに呼び方が異なるが、大抵は同一の意味を持つことが多い。
 
 ## 目次
 
