@@ -261,32 +261,7 @@ ThriftBroker.Port=38080
 
 make a rc script like this:
 {% capture text %}
-#!/bin/sh /usr/local/etc/hypertable.sh
 
-HYPERTABLE_BASE_DIR="/opt/hypertable/current/bin/"
-__start( ) {
-${HYPERTABLE_BASE_DIR}start-all-servers.sh local
-}
-
-__stop( ) {
-${HYPERTABLE_BASE_DIR}stop-servers.sh
-}
-
-
-__restart( ) {
-${HYPERTABLE_BASE_DIR}stop-servers.sh && ${HYPERTABLE_BASE_DIR}start-all-servers.sh local
-}
-
-##
-# :: main ::
-case "${1}" in
-start|stop|restart)
-# [ -x ${HYPERTABLE_DAEMON} ] || exit 2
-__${1}
-;;
-*)
-;;
-esac
 {% endcapture %}
 {% include JB/liquid_raw %}
 
