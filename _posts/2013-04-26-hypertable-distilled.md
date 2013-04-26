@@ -12,11 +12,11 @@ NoSQL is the most interesting parts in database system recently. There are two r
 **Note**: This paper approaches how to programm and implement in a real application, if I get a chance next time will see to benchmark performance of distributed environments.
 
 **Tip**: What is the DBMS and How to store data shortly?
-- ** RDBMS & ORDBMS : structured and object-oriented data
-- ** Document-oriented DBMS : semi-structured data like xml, json based on documents
-- ** Graph DBMS : edges and nodes which have properties data represented graph
-- ** Column-oriented DBMS : atttribute data
-- ** Typically row-oriented (=row based) database is mentioned to Relational DBMS & ORDBMS and column-oriented (= column based) & document-oriented is mentioned to NoSQL database.
+- RDBMS & ORDBMS : structured and object-oriented data
+- Document-oriented DBMS : semi-structured data like xml, json based on documents
+- Graph DBMS : edges and nodes which have properties data represented graph
+- Column-oriented DBMS : atttribute data
+- Typically row-oriented (=row based) database is mentioned to Relational DBMS & ORDBMS and column-oriented (= column based) & document-oriented is mentioned to NoSQL database.
 
 ## Contents
 
@@ -25,14 +25,30 @@ NoSQL is the most interesting parts in database system recently. There are two r
 - **Abstract**
 - **Design**
 
-  0. System overview
-  1. Key and Value
-  2. Access group
-  3. Secondary indices
+  - System overview
+  - Key and Value
+  - Access group
+  - Secondary indices
 
 - **Installation**
 - **Implementation**
+
+  - Prerequisite
+     - Create namespace
+     - Required libraries
+     - DDL included a source
+  - HQL Query : a source of HQL Query.
+  - Shared Mutex : a source of Shared Mutex.
+  - Asynchronization : a source of Asynchronization.
+  - Put them into one table togather.
+  - Delete all or each value
+
 - **Benchmark released (Hypertable vs HBase)**
+
+  - Random write
+  - Scan
+  - Random read
+
 - **Summary**
 - **References**
 
@@ -47,14 +63,14 @@ In HBase, column-family-centric data is stored in a row-key sorted and ordered m
 
 ### System overview
 
-[http://hypertable.com/uploads/Overview.png]
+(http://hypertable.com/uploads/Overview.png)
 *2 reference source : [http://hypertable.com](http://hypertable.com)
 
 **Hypersapce** is a filesystem for locking and storing small amounts of metadata means the root of all distributed data structures. *Master* has all meta information of operations such as creating and deleting tables. *Master* has not a single point of failure as client data does not move through it for short periods of time when switch standby to primary. *Master* is also responsible for range server load balancing. *Range server* manage ranges of table data, all reading and writing data. *DFS Broker* has the interface to *Hypersapce*. it translates normalized filesystem requests into native filesystem requests for HDFS, MapReduce, local and so on and vice-versa.
 
 ### Key and Value
 
-[<img src="http://edydkim.github.com/assets/images/Data_Representation.jpg">]
+(<img src="http://edydkim.github.com/assets/images/Data_Representation.jpg">)
 
 Here are some check points to need to know.
 **Control** describes the format of remaining fields. ex) HAVE REVISION = 0x80, HAVE TIMESTAMP = 0x40, AUTO TIMESTAMP = 0x20, SHARED = 0x10, TS_CHRONOLOGICAL = 0x01
@@ -353,4 +369,690 @@ Let's try each methods of retreiving data below:
 ### 4. Put them into one table togather
 
 ### 5. Delete all or each value
+
+Let's try all of them.
+
+### 0. Prerequisite
+
+### 0-1. Create namespace
+
+{% capture text %}
+hypertable> user '/';
+hypertable> CREATE NAMESPACE JustDoIt;
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### 0-2. Required libraries
+
+{% capture text %}
+<component name="libraryTable">
+<library name="cdh3">
+<CLASSES>
+<root url="file:///opt/hypertable/current/lib/java/cdh3" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+<jarDirectory url="file:///opt/hypertable/current/lib/java/cdh3" recursive="false" />
+</library>
+</component>
+<component name="libraryTable">
+<library name="cdh4">
+<CLASSES>
+<root url="file:///opt/hypertable/current/lib/java/cdh4" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+<jarDirectory url="file:///opt/hypertable/current/lib/java/cdh4" recursive="false" />
+</library>
+</component>
+<component name="libraryTable">
+<library name="org.apache.commons:com.springsource.org.apache.commons.cli:1.2.0" type="repository">
+<properties maven-id="org.apache.commons:com.springsource.org.apache.commons.cli:1.2.0" />
+<CLASSES>
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.commons.cli-1.2.0.jar!/" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+</library>
+</component>
+<component name="libraryTable">
+<library name="org.apache.commons:com.springsource.org.apache.commons.httpclient:3.1.0" type="repository">
+<properties maven-id="org.apache.commons:com.springsource.org.apache.commons.httpclient:3.1.0" />
+<CLASSES>
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.commons.httpclient-3.1.0.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.commons.codec-1.3.0.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.commons.logging-1.1.1.jar!/" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+</library>
+</component>
+<component name="libraryTable">
+<library name="org.apache.directory.studio:org.slf4j.log4j12:1.7.1" type="repository">
+<properties maven-id="org.apache.directory.studio:org.slf4j.log4j12:1.7.1" />
+<CLASSES>
+<root url="jar://$PROJECT_DIR$/lib/org.slf4j.log4j12-1.7.1.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.7.1.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/org.slf4j.api-1.7.1.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.1.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/org.apache.logging.log4j-1.2.17.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/annotations-1.0.0.jar!/" />
+</CLASSES>
+<JAVADOC>
+<root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.7.1-javadoc.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.1-javadoc.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/log4j-1.2.17-javadoc.jar!/" />
+</JAVADOC>
+<SOURCES />
+</library>
+</component>
+<component name="libraryTable">
+<library name="org.apache.log4j:com.springsource.org.apache.log4j:1.2.16" type="repository">
+<properties maven-id="org.apache.log4j:com.springsource.org.apache.log4j:1.2.16" />
+<CLASSES>
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.apache.log4j-1.2.16.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.javax.jms-1.1.0.jar!/" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+</library>
+</component>
+<component name="libraryTable">
+<library name="org.apache.thrift:libthrift:0.9.0" type="repository">
+<properties maven-id="org.apache.thrift:libthrift:0.9.0" />
+<CLASSES>
+<root url="jar://$PROJECT_DIR$/lib/libthrift-0.9.0.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.5.8.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/commons-lang-2.5.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/servlet-api-2.5.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/httpclient-4.1.3.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/httpcore-4.1.3.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/commons-logging-1.1.1.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/commons-codec-1.4.jar!/" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+</library>
+</component>
+<component name="libraryTable">
+<library name="org.codehaus.jackson:com.springsource.org.codehaus.jackson.mapper:1.4.3" type="repository">
+<properties maven-id="org.codehaus.jackson:com.springsource.org.codehaus.jackson.mapper:1.4.3" />
+<CLASSES>
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.codehaus.jackson.mapper-1.4.3.jar!/" />
+<root url="jar://$PROJECT_DIR$/lib/com.springsource.org.codehaus.jackson-1.4.3.jar!/" />
+</CLASSES>
+<JAVADOC />
+<SOURCES />
+</library>
+</component>
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### 0-3. DDL included a source
+{% capture text %}
+drop table if exists sample;
+create table (col);
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### 1. HQL Query : a source of HQL Query.
+
+{code:title=HQLTest.java|borderStyle=solid}
+package org.hypertable.examples.justdoit;
+
+/**
+* HQLTest
+* User: edydkim.github.com
+* Date: 13/03/25
+* Time: 20:20
+*/
+
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Iterator;
+
+import org.hypertable.thrift.ThriftClient;
+import org.hypertable.thriftgen.*;
+
+public class HQLTest {
+public static void main(String [] args) {
+ThriftClient client = null;
+long ns = -1;
+try {
+client = ThriftClient.create("localhost", 38080);
+ns = client.namespace_open("JustDoIt");
+
+Cell cell;
+Key key;
+String str;
+
+// HQL examples
+show(client.hql_query(ns, "show tables").toString());
+show(client.hql_query(ns, "drop table if exists JustDoItHQLTest").toString());
+show(client.hql_query(ns, "create table JustDoItHQLTest (col)").toString());
+show(client.hql_query(ns, "select * from JustDoItHQLTest").toString());
+// Schema example
+Schema schema = new Schema();
+schema = client.table_get_schema(ns, "JustDoItHQLTest");
+
+Iterator ag_it = schema.access_groups.keySet().iterator();
+show("Access groups:");
+while (ag_it.hasNext()) {
+show("\t" + ag_it.next());
+}
+
+Iterator cf_it = schema.column_families.keySet().iterator();
+show("Column families:");
+while (cf_it.hasNext()) {
+show("\t" + cf_it.next());
+}
+
+// set mutator
+long mutator = client.mutator_open(ns, "JustDoItHQLTest", 0, 0);
+
+try {
+cell = new Cell();
+key = new Key();
+key.setRow("000");
+key.setColumn_family("col");
+key.setColumn_qualifier("test");
+cell.setKey(key);
+str = "beer";
+cell.setValue(ByteBuffer.wrap(str.getBytes()));
+client.mutator_set_cell(mutator, cell);
+
+cell = new Cell();
+key = new Key();
+key.setRow("000");
+key.setColumn_family("col");
+cell.setKey(key);
+str = "カクテル";
+cell.setValue(ByteBuffer.wrap(str.getBytes("UTF-8")));
+client.mutator_set_cell(mutator, cell);
+}
+finally {
+client.mutator_close(mutator);
+}
+
+HqlResult hqlResult = client.hql_query(ns, "select * from JustDoItHQLTest");
+List<Cell> cells = hqlResult.cells;
+int qualifier_count = 0;
+show("Cells:");
+for(Cell c : cells) {
+byte[] array = c.value.array();
+byte[] values = new byte[c.value.remaining()];
+for (int i = 0; i < values.length; i++) {
+values[i] = array[i + c.value.position()];
+}
+
+show("\t" + new String(values) + " : " + c.toString());
+if (c.key.isSetColumn_qualifier() && c.key.column_qualifier.length() == 0)
+qualifier_count++;
+}
+
+if (qualifier_count != 1) {
+show("ERROR: Expected qualifier_count of 1, got " + qualifier_count);
+client.namespace_close(ns);
+System.exit(1);
+}
+
+client.namespace_close(ns);
+} catch (Exception e) {
+e.printStackTrace();
+try {
+if (client != null && ns != -1)
+client.namespace_close(ns);
+}
+catch (Exception ce) {
+System.err.println("Problem closing namespace \"JustDoIt\" - " + e.getMessage());
+}
+System.exit(1);
+}
+}
+
+private static void show(String line) {
+System.out.println(line);
+}
+}
+
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+The Result :
+{% capture text %}
+HqlResult(results:[JustDoItHQLTest])
+HqlResult()
+HqlResult()
+HqlResult(cells:[])
+Access groups:
+default
+Column families:
+col
+Cells:
+カクテル : Cell(key:Key(row:000, column_family:col, column_qualifier:, timestamp:1364277553876608002, revision:1364277553876608002, flag:INSERT), value:java.nio.HeapByteBuffer[pos=99 lim=111 cap=190])
+beer : Cell(key:Key(row:000, column_family:col, column_qualifier:test, timestamp:1364277553876608001, revision:1364277553876608001, flag:INSERT), value:java.nio.HeapByteBuffer[pos=183 lim=187 cap=190])
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### 2. Shared Mutex : a source of Shared Mutex.
+
+{code:title=SharedMutexTest.java|borderStyle=solid}
+package org.hypertable.examples.justdoit;
+
+/**
+* SharedMutexTest
+* User: edydkim.github.com
+* Date: 13/03/25
+* Time: 20:20
+*/
+
+import org.hypertable.thrift.ThriftClient;
+import org.hypertable.thriftgen.*;
+
+import java.nio.ByteBuffer;
+import java.util.Iterator;
+import java.util.List;
+
+public class SharedMutexTest {
+public static void main(String [] args) {
+ThriftClient client = null;
+long ns = -1;
+try {
+client = ThriftClient.create("localhost", 38080);
+ns = client.namespace_open("JustDoIt");
+
+Cell cell;
+Key key;
+String str;
+
+// HQL examples
+show(client.hql_query(ns, "show tables").toString());
+show(client.hql_query(ns, "drop table if exists JustDoItSMutexTest").toString());
+show(client.hql_query(ns, "create table JustDoItSMutexTest (col)").toString());
+show(client.hql_query(ns, "select * from JustDoItSMutexTest").toString());
+// Schema example
+Schema schema = new Schema();
+schema = client.table_get_schema(ns, "JustDoItSMutexTest");
+
+Iterator ag_it = schema.access_groups.keySet().iterator();
+show("Access groups:");
+while (ag_it.hasNext()) {
+show("\t" + ag_it.next());
+}
+
+Iterator cf_it = schema.column_families.keySet().iterator();
+show("Column families:");
+while (cf_it.hasNext()) {
+show("\t" + cf_it.next());
+}
+
+// shared mutator
+show("Shared mutator");
+MutateSpec mutate_spec = new MutateSpec();
+mutate_spec.setAppname("test-java");
+mutate_spec.setFlush_interval(1000);
+
+cell = new Cell();
+key = new Key();
+key.setRow("v1");
+key.setColumn_family("col");
+cell.setKey(key);
+String vtmp = "IamFirst";
+cell.setValue( ByteBuffer.wrap(vtmp.getBytes()) );
+client.offer_cell(ns, "JustDoItSMutexTest", mutate_spec, cell);
+
+cell = new Cell();
+key = new Key();
+key.setRow("v2");
+key.setColumn_family("col");
+cell.setKey(key);
+vtmp = "IamSecond";
+cell.setValue( ByteBuffer.wrap(vtmp.getBytes()) );
+client.shared_mutator_refresh(ns, "JustDoItSMutexTest", mutate_spec);
+client.shared_mutator_set_cell(ns, "JustDoItSMutexTest", mutate_spec, cell);
+Thread.sleep(2000);
+
+// scan
+show("Full scan");
+ScanSpec scanSpec = new ScanSpec(); // empty scan spec select all
+long scanner = client.scanner_open(ns, "JustDoItSMutexTest", scanSpec);
+
+try {
+List<Cell> sCells = client.scanner_get_cells(scanner);
+
+while (sCells.size() > 0) {
+for (Cell c : sCells) {
+byte[] tmp = c.getValue();
+String s = new String(tmp);
+show("\t" + s);
+}
+sCells = client.scanner_get_cells(scanner);
+}
+}
+finally {
+client.scanner_close(scanner);
+}
+// restricted scanspec
+scanSpec.addToColumns("col:/^.*$/");
+scanSpec.setRow_regexp("v.*");
+scanSpec.setValue_regexp("Second");
+scanner = client.scanner_open(ns, "JustDoItSMutexTest", scanSpec);
+show("Restricted scan");
+try {
+List<Cell> ssCells = client.scanner_get_cells(scanner);
+
+while (ssCells.size() > 0) {
+for (Cell c : ssCells) {
+byte[] tmp = c.getValue();
+String s = new String(tmp);
+show("\t" + s);
+}
+ssCells = client.scanner_get_cells(scanner);
+}
+}
+finally {
+client.scanner_close(scanner);
+}
+
+client.namespace_close(ns);
+} catch (Exception e) {
+e.printStackTrace();
+try {
+if (client != null && ns != -1)
+client.namespace_close(ns);
+}
+catch (Exception ce) {
+System.err.println("Problem closing namespace \"JustDoIt\" - " + e.getMessage());
+}
+System.exit(1);
+}
+}
+
+private static void show(String line) {
+System.out.println(line);
+}
+}
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+The Result :
+{% capture text %}
+HqlResult(results:[JustDoItHQLTest, JustDoItSMutexTest])
+HqlResult()
+HqlResult()
+HqlResult(cells:[])
+Access groups:
+default
+Column families:
+col
+Shared mutator
+Full scan
+IamFirst
+IamSecond
+Restricted scan
+IamSecond
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### 3. Asynchronization : a source of Asynchronization.
+
+{code:title=ASyncTest.java|borderStyle=solid}
+package org.hypertable.examples.justdoit;
+
+/**
+* ASyncTest
+* User: edydkim.github.com
+* Date: 13/03/25
+* Time: 20:20
+*/
+
+import org.hypertable.thrift.ThriftClient;
+import org.hypertable.thriftgen.*;
+
+import java.nio.ByteBuffer;
+import java.util.Iterator;
+
+public class ASyncTest {
+public static void main(String [] args) {
+ThriftClient client = null;
+long ns = -1;
+try {
+client = ThriftClient.create("localhost", 38080);
+ns = client.namespace_open("JustDoIt");
+
+Cell cell;
+Key key;
+String str;
+
+// HQL examples
+show(client.hql_query(ns, "show tables").toString());
+show(client.hql_query(ns, "drop table if exists JustDoItASyncTest").toString());
+show(client.hql_query(ns, "create table JustDoItASyncTest (col)").toString());
+show(client.hql_query(ns, "select * from JustDoItASyncTest").toString());
+// Schema example
+Schema schema = new Schema();
+schema = client.table_get_schema(ns, "JustDoItASyncTest");
+
+Iterator ag_it = schema.access_groups.keySet().iterator();
+show("Access groups:");
+while (ag_it.hasNext()) {
+show("\t" + ag_it.next());
+}
+
+Iterator cf_it = schema.column_families.keySet().iterator();
+show("Column families:");
+while (cf_it.hasNext()) {
+show("\t" + cf_it.next());
+}
+
+// asynchronous api
+long future=0;
+long mutator_async_1=0;
+long mutator_async_2=0;
+long test_scanner=0;
+int expected_cells = 6;
+int num_cells = 0;
+
+try {
+show("Asynchronous mutator");
+future = client.future_open(0);
+mutator_async_1 = client.async_mutator_open(ns, "JustDoItASyncTest", future, 0);
+mutator_async_2 = client.async_mutator_open(ns, "JustDoItASyncTest", future, 0);
+Result result;
+
+cell = new Cell();
+key = new Key();
+key.setRow("alpha");
+key.setColumn_family("col");
+cell.setKey(key);
+String vtmp = "winner";
+cell.setValue( ByteBuffer.wrap(vtmp.getBytes()) );
+client.async_mutator_set_cell(mutator_async_1, cell);
+
+cell = new Cell();
+key = new Key();
+key.setRow("bravo");
+key.setColumn_family("col");
+cell.setKey(key);
+vtmp = "looser";
+cell.setValue( ByteBuffer.wrap(vtmp.getBytes()) );
+client.async_mutator_set_cell(mutator_async_2, cell);
+
+client.async_mutator_flush(mutator_async_1);
+client.async_mutator_flush(mutator_async_2);
+
+int num_flushes=0;
+while (true) {
+result = client.future_get_result(future, 0);
+if (result.is_empty || result.is_error || result.is_scan)
+break;
+num_flushes++;
+}
+if (num_flushes > 2) {
+show("Expected 2 flushes, received " + num_flushes);
+System.exit(1);
+}
+if (client.future_is_cancelled(future) || client.future_is_full(future) ||
+!client.future_is_empty(future) || client.future_has_outstanding(future)) {
+show("Future object in unexpected state");
+System.exit(1);
+}
+}
+finally {
+client.async_mutator_close(mutator_async_1);
+client.async_mutator_close(mutator_async_2);
+}
+
+try {
+show("Asynchronous scan");
+ScanSpec ss = new ScanSpec();
+test_scanner = client.async_scanner_open(ns, "JustDoItASyncTest", future, ss);
+Result result;
+while (true) {
+result = client.future_get_result(future, 0);
+if (result.is_empty || result.is_error || !result.is_scan)
+break;
+for (Cell c : result.cells) {
+byte[] tmp = c.getValue();
+String s = new String(tmp);
+show(s);
+num_cells++;
+}
+if (num_cells >= 2) {
+client.future_cancel(future);
+break;
+}
+}
+if (!client.future_is_cancelled(future)) {
+show("Expected future object to be cancelled");
+System.exit(1);
+}
+}
+finally {
+client.async_scanner_close(test_scanner);
+client.future_close(future);
+}
+if (num_cells != 2) {
+show("Expected " + expected_cells + " cells got " + num_cells);
+System.exit(1);
+}
+
+client.namespace_close(ns);
+} catch (Exception e) {
+e.printStackTrace();
+try {
+if (client != null && ns != -1)
+client.namespace_close(ns);
+}
+catch (Exception ce) {
+System.err.println("Problem closing namespace \"JustDoIt\" - " + e.getMessage());
+}
+System.exit(1);
+}
+}
+
+private static void show(String line) {
+System.out.println(line);
+}
+}
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+The Result :
+{% capture text %}
+HqlResult(results:[JustDoItASyncTest, JustDoItHQLTest, JustDoItSMutexTest])
+HqlResult()
+HqlResult()
+HqlResult(cells:[])
+Access groups:
+default
+Column families:
+col
+Asynchronous mutator
+Asynchronous scan
+winner
+looser
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### Put them into one table togather.
+
+Try it to make one class then check how to be synchronized and asynchronized.
+
+{% capture text %}
+create table AllTest(hql_col, mutex_col, async_col);
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+### Delete all or each value
+
+Key is necessary and column or column qualitifier is optional.
+
+{% capture text %}
+delete * from JustDoItHQLTest where row = "000";
+or
+delete col from JustDoItHQLTest where row = "000";
+{% endcapture %}
+{% include JB/liquid_raw %}
+
+
+## Benchmark released (Hypertable vs HBase)
+
+See details [http://hypertable.com/why_hypertable/hypertable_vs_hbase_2/](http://hypertable.com/why_hypertable/hypertable_vs_hbase_2/) for performance evaluation
+*3 reference source : [http://hypertable.com](http://hypertable.com)
+
+### Random write
+
+[http://hypertable.com/uploads/perfeval/test2/test2-random-write-insert-throughput.png]
+
+### Scan
+
+[http://hypertable.com/uploads/perfeval/test2/test2-scan-cell-throughput.png]
+
+### Random read
+
+[http://hypertable.com/uploads/perfeval/test2/test2-random-read-zipfian.png]
+
+## Summary
+
+Map/Reduce model is not new concept but validated High Scalability in distributed storage systems by Google. The problem is which is best in own system. Hypertable have a various implementation method to access data and is optimized query by query caching. I believe these are very useful to make a rapid real application.
+
+## References
+
+*1 : some quotation taken from the book - Professional NoSQL by Shashank Tiwari
+*2, *3 : source from hypertable Inc., [http://www.hypertable.com/](http://www.hypertable.com/)
+Github open source group: [https://github.com/hypertable](https://github.com/hypertable)
+Paper: HBase and Hypertable for large scale distributed storage systems by Ankur Khetrapal, Vinay Ganesh@cs.purdue.edu
+
+Here is as Japanese.
+
+## 概要
+データベースの選定、特にNoSQLデータベースにおいて、一番重要視されることは拡張性と生産性である。本書では左記2点の観点からログングなどの用途に限らず、リアルアプリケーション開発のCRUDにてどのように使われるかをその仕組み、簡単なアーキテクチャとソースコードから説明する。本書が数多くあるNoSQLデータベースの中、比較や選定に少しでも役に立てればと思う。
+
+**Tip**+:DBMS属するデータの種類
+- ** RDBMS & ORDBMS（関係データベース管理システムとオブジェクト関係データベース管理システム）：構造型、又はオブジェクト指向データ
+- ** Document-DBMS（ドキュメントデータベース管理システム）：xmlやjsonのようなテキスト形の準構造型データ
+- ** Graph-DBMS（グラフデータベース）：頂点と節点の関係性を表すデータ
+- ** Column-oriented DBMS（列指向データベース管理システム）：非定型の類似属性データ
+- ** 一般的にターミノロジーとして、Row-ColumnをTurple-Attribute、又はRecord-Elementと呼ぶ。数学やコンピュータサイエンスなど学文ごとに呼び方が異なるが、大抵は同一の意味を持つことが多い。
+
+## 目次
+
+[#Contents] 参照。
+
+## 序論
+Hypertable（ハイパーテーブル）はMap/Reduceアーキテクチャ基盤のグーグルBigTableクーロンプロジェクトあり、同様のHBaseのように分散ファイルシステムに特化されている。データはカラムベースに既定情報とバージョンやタイムスタンプなどの複数Rowキーに構成される。なお、各Cell（hypertableではKey-ValueペアをCellと呼ぶ）はカラムとカラムqualitifier制限子（タグのようなもの）より複数のインデックスを作成することができる。
+インデックス情報はプライマリーテーブル内、同ネームスペースに保持される。（OracleなどRDBMSに例えるとプライマリーテーブルはシステムテーブル、ネームスペースはデータベース)
+
+## 内容
+下記順にシステム構成図を基に、インストール方法、実装方法、ベンチマークについて説明する。
+詳細は[#Design]、[#Installation]、[#Implementation]、[#Benchmark released (Hypertable vs HBase)] 参照。
+
+## まとめ
+Map/Reduceモデルより分散環境の可用性を向上する試みはGoogleなどに実検証されている。課題は如何に利便性を向上させられるかにあり、HypertableはC++基盤の安定性、多様なデータアクセス方法、かつクエリキャッシュなど独自機能を持つ柔軟性あるデータベース管理システムで実用価値は十分あると考えられる。
+
+## 参考文献
+
+[#References] 参照。
 
