@@ -129,14 +129,14 @@ hypertable> create table User (
 -> );
 
 Elapsed time: 35.21 s
-hypertable> insert into User values ('A00', 'name', 'I am'), ('A00', 'department', 'Sales'), ('A00', 'position', 'Manager');
+hypertable> insert into User values ("A00", "name", "I am"), ("A00", "department", "Sales"), ("A00", "position", "Manager");
 
 Elapsed time: 0.05 s
 Avg value size: 5.33 bytes
 Total cells: 3
 Throughput: 59.39 cells/s
 Resends: 0
-hypertable> insert into User values ('B00', 'name', 'You are'), ('B00', 'department:old', 'Human Resource'), ('B00', 'position', 'Senior Manager');
+hypertable> insert into User values ("B00", "name", "You are"), ("B00", "department:old", "Human Resource"), ("B00", "position", "Senior Manager");
 
 Elapsed time: 0.12 s
 Avg value size: 11.67 bytes
@@ -145,7 +145,7 @@ Throughput: 319.36 bytes/s
 Total cells: 3
 Throughput: 24.57 cells/s
 Resends: 0
-hypertable> select name from User where name = 'I am';
+hypertable> select name from User where name = "I am";
 A00 name I am
 
 Elapsed time: 0.07 s
@@ -154,7 +154,7 @@ Avg key size: 4.00 bytes
 Throughput: 121.82 bytes/s
 Total cells: 1
 Throughput: 15.23 cells/s
-hypertable> select name from User where name =^ 'I';
+hypertable> select name from User where name =^ "I";
 A00 name I am
 
 Elapsed time: 0.00 s
@@ -164,7 +164,7 @@ Throughput: 15009.38 bytes/s
 Total cells: 1
 Throughput: 1876.17 cells/s
 
-hypertable> select department:old from User where department = 'Human Resource';
+hypertable> select department:old from User where department = "Human Resource";
 B00 department:old Human Resource
 
 Elapsed time: 0.00 s
@@ -261,7 +261,31 @@ ThriftBroker.Port=38080
 
 make a rc script like this:
 {% capture text %}
+#!/bin/sh /usr/local/etc/hypertable.sh
 
+HYPERTABLE_BASE_DIR="/opt/hypertable/current/bin/"
+__start( ) {
+${HYPERTABLE_BASE_DIR}start-all-servers.sh local
+}
+
+__stop( ) {
+${HYPERTABLE_BASE_DIR}stop-servers.sh
+}
+
+__restart( ) {
+${HYPERTABLE_BASE_DIR}stop-servers.sh && ${HYPERTABLE_BASE_DIR}start-all-servers.sh local
+}
+
+##
+# :: main ::
+case "${1}" in
+  start|stop|restart)
+    # [ -x ${HYPERTABLE_DAEMON} ] || exit 2
+    __${1}
+    ;;
+  *)
+    ;;
+esac
 {% endcapture %}
 {% include JB/liquid_raw %}
 
@@ -289,10 +313,10 @@ $ ht shell
 Welcome to the hypertable command interpreter.
 For information about Hypertable, visit http://hypertable.com
 
-Type 'help' for a list of commands, or 'help shell' for a
+Type "help" for a list of commands, or "help shell" for a
 list of shell meta commands.
 
-hypertable> use '/';
+hypertable> use "/";
 
 Elapsed time: 0.00 s
 hypertable> get listing;
@@ -352,7 +376,7 @@ Let's try all of them.
 ### 0-1. Create namespace
 
 {% capture text %}
-hypertable> user '/';
+hypertable> user "/";
 hypertable> CREATE NAMESPACE JustDoIt;
 {% endcapture %}
 {% include JB/liquid_raw %}
