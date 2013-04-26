@@ -90,7 +90,7 @@ access group default(name, position)
 )
 {% endcapture %}
 {% include JB/liquid_raw %}
-+Note+: The column family 'department' can belong to only one access group. If the column family belong to one more access group HYPERTABLE HQL parse error is occured.
+**Note**: The column family 'department' can belong to only one access group. If the column family belong to one more access group HYPERTABLE HQL parse error is occured.
 
 Run a query below then, check elaspsed time and throughput.
 {% capture text %}
