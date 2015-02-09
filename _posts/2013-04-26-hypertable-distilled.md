@@ -2,7 +2,7 @@
 layout: post
 title: "Hypertable Distilled"
 description: "Hypertable Distilled"
-category: 
+category: Tech
 tags: [Hypertable, HBase, BigTable]
 ---
 

@@ -2,8 +2,8 @@
 layout: post
 title: "Tuning Sort on MySQL"
 description: "tuning sort on mysql"
-category: 
-tags: [tuning, sort, mysql]
+category: Tech
+tags: [mysql, tuning, sort, troubleshooting]
 ---
 
 **DBチューニング（改善）事例を現行と他システム（別サービス）の観点から行ったことについて記述。**

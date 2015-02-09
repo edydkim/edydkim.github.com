@@ -2,7 +2,7 @@
 layout: post
 title: "How to stream with RTMP on NginX, Part Ⅰ"
 description: "How to stream with RTMP on NginX"
-category: 
+category: Tech
 tags: [NginX, RTMP]
 ---
 ## Preface
