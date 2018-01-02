@@ -12,9 +12,10 @@ Here is my list..
 
 ## Update Author Attributes
 
-See about below.
+See more below:
 
-Or another pages is [app-creative.com](http://app-creative.com)
+[LinkedIn](https://www.linkedin.com/in/edydkim/)
+[app-creative.com](http://app-creative.com)
 
 ## Posts
 
