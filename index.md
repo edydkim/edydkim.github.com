@@ -16,7 +16,7 @@ See more below:
 
 [LinkedIn](https://www.linkedin.com/in/edydkim/)
 
-[app-creative.com](http://app-creative.com)
+[App-Creative.com](http://app-creative.com)
 
 ## Posts
 
