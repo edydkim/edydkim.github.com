@@ -15,6 +15,7 @@ Here is my list..
 See more below:
 
 [LinkedIn](https://www.linkedin.com/in/edydkim/)
+
 [app-creative.com](http://app-creative.com)
 
 ## Posts
