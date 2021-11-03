@@ -10,7 +10,7 @@ Share open project with you.
 Here is my list..
 [github.com/edydkim](https://github.com/edydkim/)
 
-## Update Author Attributes
+## Author Attributes
 
 See more below:
 
@@ -27,6 +27,11 @@ Here's a "posts list".
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
+
+## Notices
+
+For Data Science Engineering, an assignment/solution to a new joiner is created/uncovered for a fun :
+[Welcome to Data Science Engineering Pages](https://edydkim.github.io/dse-interview/)
 
 ## To-Do
 
