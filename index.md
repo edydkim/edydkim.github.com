@@ -30,8 +30,11 @@ Here's a "posts list".
 
 ## Notices
 
-For Data Science Engineering, an assignment/solution to a new joiner is created/uncovered for a fun :
+For Data Science Engineering, an assignment of ETL & Preprocessing to a new joiner and its solution are created/uncovered for a fun :
 [Welcome to Data Science Engineering Pages](https://edydkim.github.io/dse-interview/)
+
+For R programming, the following solution would be useful in performance tuning as to another assignment: 
+[Welcome to R Programming Assignment Solution Pages](https://edydkim.github.io/ProgrammingAssignment2/)
 
 ## To-Do
 
