@@ -38,6 +38,6 @@ For R programming, the following solution would be useful in performance tuning 
 
 ## To-Do
 
-This site is still unfinished and updating.
+Keep updating!
 
 
